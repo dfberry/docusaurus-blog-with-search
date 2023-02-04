@@ -41,7 +41,10 @@ const site = require('./site.config');
           feedOptions: site.blog.rssFeedOptions,
         },
         sitemap: {
-          changefreq: 'daily',
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -55,7 +58,7 @@ const site = require('./site.config');
     ({
       navbar: {
         title: site.navbar.title,
-        hideOnScroll: true,
+        hideOnScroll: false,
         items: site.navbar.items
       },
       footer: {
@@ -76,11 +79,14 @@ const site = require('./site.config');
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         hashed: false,
-        indexBlog: false,
-        docsRouteBasePath: "/docs",
+        indexBlog: true,
+        indexDocs: true,
+        blogDir: "blog",
         blogRouteBasePath: "/",
+        language: 'en',
         highlightSearchTermsOnTargetPage: true,
-        searchResultContextMaxLength: 75,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50
       },
     ],
   ]

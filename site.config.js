@@ -9,7 +9,7 @@ const site = {
 
   footerLinks: [
     {
-      title: "My Other Links",
+      title: "Links",
       items: [
         {
           label: "GitHub",
@@ -60,8 +60,8 @@ const site = {
     title: "My Blog Title",
     description: "My Blog Description",
     sidebarTitle: "Recent posts",
-    sidebarCount: 10, // Pick a low number or "All",
-    postsPerPage: 2,
+    sidebarCount: "ALL", // Pick a low number or "All",
+    postsPerPage: 3,
     rssFeedOptions: {
       type: "all",
       title: "Simple Docusaurus Blog site feed",
@@ -78,19 +78,18 @@ const site = {
         position: "left",
         label: "Get Started",
       },
-      { to: "/", label: "Blog", position: "left" },
-      {
-        label: 'Sitemap',
-        // siteUrl + '/sitemap.xml'
-        href: 'http://yourGitHubAccountName.github.io/sitemap.xml',
+      { 
+        to: "/", 
+        label: "Blog", 
+        position: "left",
+        type: "dropdown", 
+        items: [
+          { to: "/", label: "Recent"},
+          { to: "tags", label: "Tags" },
+        ]
       },
       {
-        label: 'RSS',
-        // siteUrl + '/rss.xml'
-        href: 'https://yourGitHubAccountName.github.io/rss.xml',
-      },
-      {
-        href: "https://github.com/dfberry/introduction",
+        href: "https://github.com/dfberry/docusaurus-blog-with-search",
         label: "GitHub",
         position: "right",
       },
