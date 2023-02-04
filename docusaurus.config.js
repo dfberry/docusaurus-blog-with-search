@@ -6,14 +6,15 @@ const site = require('./site.config');
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (module.exports = {
-  title: `${site.title}`,
-  tagline: `${site.tagline}`,
-  url: `${site.siteUrl}`,
+  title: site.title,
+  tagline: site.tagline,
+  url: site.siteUrl,
   baseUrl: '/',
+  favicon: '/favicon.ico',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  organizationName: `${site.githubAccount}`, // Usually your GitHub org/user name.
-  projectName: `${site.githubRepo}`, // Usually your repo name.
+  organizationName: site.githubAccount, // Usually your GitHub org/user name.
+  projectName: site.githubRepo, // Usually your repo name.
 
   presets: [
     [
@@ -23,7 +24,24 @@ const site = require('./site.config');
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: `https://github.com/${site.githubAccount}/${site.githubRepo}/edit/${site.githubBranchName}/`,
-          routeBasePath: '/'
+          routeBasePath: '/docs'
+        },
+        blog: {
+          showReadingTime: true,
+          // Please change this to your repo.
+          routeBasePath: '/',
+          blogTitle: site.blog.title,
+          blogDescription: site.blog.descripton,
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          path: 'blog',
+          blogSidebarCount: site.blog.sidebarCount,
+          blogSidebarTitle: site.blog.sidebarTitle,
+          postsPerPage: site.blog.postsPerPage,
+          feedOptions: site.blog.rssFeedOptions,
+        },
+        sitemap: {
+          changefreq: 'daily',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -36,17 +54,21 @@ const site = require('./site.config');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: `${site.navBarTitle}`,
+        title: site.navbar.title,
+        hideOnScroll: true,
+        items: site.navbar.items
       },
       footer: {
         style: 'dark',
         links: site.footerLinks,
         copyright: site.copyright
       },
+      announcementBar: site.announcementBar,
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      feedOptions: site.feedOptions
     }),
 
   plugins: [
@@ -55,7 +77,8 @@ const site = require('./site.config');
       {
         hashed: false,
         indexBlog: false,
-        docsRouteBasePath: "/",
+        docsRouteBasePath: "/docs",
+        blogRouteBasePath: "/",
         highlightSearchTermsOnTargetPage: true,
         searchResultContextMaxLength: 75,
       },
