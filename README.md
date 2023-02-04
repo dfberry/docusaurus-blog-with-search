@@ -15,3 +15,5 @@ npm install
 ```
 npm run local
 ```
+
+![](./static/img/basic-site.png)
